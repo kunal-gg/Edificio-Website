@@ -27,7 +27,7 @@ export default function Profiles() {
   return (
     <section className="pt-16  h-[2000px]">
       <div className="w-full lg:w-4/12 px-4 mx-auto">
-        <div className="fixed mt-48  flex flex-col min-w-0 break-words bg-white w-96 mb-6 shadow-xl rounded-lg mobile:w-9/12 mobile:-translate-x-1/2 mobile:-translate-y-1/2 mobile:transform mobile:left-1/2 mobile:top-1/4">
+        <div className="fixed mt-48  flex flex-col min-w-0 break-words bg-white w-96 mb-6 shadow-xl rounded-lg mobile:w-11/12 mobile:-translate-x-1/2 mobile:-translate-y-1/2 mobile:transform mobile:left-1/2 mobile:top-1/4">
           <div className="px-6 my-12">
             <div className="text-center text-xl font-semibold mb-4">Profile</div>
             <div className="">
@@ -50,14 +50,6 @@ export default function Profiles() {
               <div className="flex justify-between">
 
                 <h3 className=" font-semibold leading-normal text-blueGray-700 mb-2">
-                  Email :
-                </h3>
-                <h3>{details.email} </h3>
-              </div>
-
-              <div className="flex justify-between">
-
-                <h3 className=" font-semibold leading-normal text-blueGray-700 mb-2">
                   College :
                 </h3>
                 <h3>{details.college} </h3>
@@ -65,11 +57,16 @@ export default function Profiles() {
 
               <div className="flex justify-between">
                 <h3 className=" font-semibold leading-normal text-blueGray-700 mb-2">Events  :</h3>
-                {events.map((element)=>{
-                  return(
-                    <h1>{element}</h1>
-                  )
-                })}
+                <ul>
+
+                  {events.map((element) => {
+                    return (
+                      <li className="text-right">
+                        {element.charAt(0).toUpperCase() + element.slice(1)}
+                      </li>
+                    )
+                  })}
+                </ul>
               </div>
             </div>
           </div>
