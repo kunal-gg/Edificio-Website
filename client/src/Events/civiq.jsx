@@ -7,23 +7,29 @@ export default function Civiq(){
 
   const registerEvent = async () => {
     const token = localStorage.getItem('Token')
-    const result = await fetch(  
-      "https://edificio-website-woad.vercel.app/api/events/register", 
-     {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify({token: token, event: 'civiq'})
-     }
-    ) 
- 
-     const jsonData = await result.json()
-     try {
-       alert(jsonData.success);
-       navigate('/events')
-     } catch (error) {
-       alert(jsonData.error);
+    if(token){
+
+      const result = await fetch(  
+        "https://server-sigma-neon.vercel.app/api/events/register", 
+       {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({token: token, event: 'civiq'})
+       }
+      ) 
+   
+       const jsonData = await result.json()
+       try {
+         alert(jsonData.success);
+         navigate('/events')
+       } catch (error) {
+         alert(jsonData.error);
+       }
+    }else{
+      const jsonData = {error : "Kindly Signup & Login First"};
+      alert(jsonData.error);
      }
    }
 
@@ -44,7 +50,7 @@ export default function Civiq(){
               <div className="p-10">
                 <ul>
                   <li>
-                  <button onClick={registerEvent}>Register</button>
+                  <button onClick={registerEvent} className='block m-auto px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'>Register</button>
                     <h5 className="mb-2 text-2xl font-bold tracking-tight uppercase underline">
                       About:
                     </h5>
@@ -83,6 +89,7 @@ export default function Civiq(){
                     </ol>
                   </ol>
                     <li className="px-5">In case of a tie in round 2, teams will be given one or two subjective problem statements</li>
+                    <li className="text-blue-700 text-center">Note - All decisions taken by the organizing team will be deemed as final, and no more changes will be encouraged, thus holding the full authority to change any of the above rules as per circumstances.</li>
                 </ul>
               </div>
             </div>
