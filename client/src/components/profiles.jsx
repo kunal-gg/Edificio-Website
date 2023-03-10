@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function Profiles() {
 
   const [details, setDetails] = useState({});
+  const [events, setEvents] = useState([]);
 
   const token = localStorage.getItem("Token")
   const getuserProfile = async () => {
@@ -18,7 +19,7 @@ export default function Profiles() {
     )
     const data = await user.json()
     setDetails(data)
-    console.log(data)
+    setEvents(data.events);
   }
   useEffect(() => {
     getuserProfile()
@@ -60,6 +61,15 @@ export default function Profiles() {
                   College :
                 </h3>
                 <h3>{details.college} </h3>
+              </div>
+
+              <div className="flex justify-between">
+                <h3 className=" font-semibold leading-normal text-blueGray-700 mb-2">Events  :</h3>
+                {events.map((element)=>{
+                  return(
+                    <h1>{element}</h1>
+                  )
+                })}
               </div>
             </div>
           </div>
